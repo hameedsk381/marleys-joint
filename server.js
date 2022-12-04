@@ -1,9 +1,9 @@
 const express = require("express");
 
 require("dotenv").config();
-// const db = require("./configs/db");
-// const Pizza = require("./models/Pizzamodel");
-// const User = require("./models/Usermodel");
+const db = require("./configs/db");
+const Pizza = require("./models/Pizzamodel");
+const User = require("./models/Usermodel");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.port || 2000;
