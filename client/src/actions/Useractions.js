@@ -4,7 +4,7 @@ export const registerUser = (user) => async (dispatch) => {
   dispatch({ type: "USER_REGISTER_REQUEST" });
   try {
     const response = await axios.post(
-      "http://localhost:2000/api/users/register",
+      "/api/users/register",
       user
     );
     console.log(response);
@@ -18,7 +18,7 @@ export const loginUser = (user) => async (dispatch) => {
   dispatch({ type: "USER_LOGIN_REQUEST" });
   try {
     const response = await axios.post(
-      "http://localhost:2000/api/users/login",
+      "/api/users/login",
       user
     );
     console.log(response);
@@ -34,7 +34,7 @@ export const getAllUsers = () => async (dispatch) => {
   dispatch({ type: "GET_USERS_REQUEST" });
 
   try {
-    const response = await axios.get("http://localhost:2000/api/users/get");
+    const response = await axios.get("/api/users/get");
     console.log(response);
     dispatch({ type: "GET_USERS_SUCCESS", payload: response.data });
   } catch (error) {
@@ -54,7 +54,7 @@ export const logOutUser = () => (dispatch) => {
 export const deleteUser = (userid) => async(dispatch) => {
   dispatch({ type: "DELETE_USER", payload: userid });
   try {
-    const res = await axios.post("http://localhost:2000/api/users/delete", {
+    const res = await axios.post("/api/users/delete", {
       userid,
     });
     console.log(res);

@@ -1,16 +1,16 @@
 const express = require("express");
-const db = require("./db");
-const Pizza = require("./models/Pizzamodel");
-const User = require("./models/Usermodel");
+
+require("dotenv").config()
+// const db = require("./configs/db");
+// const Pizza = require("./models/Pizzamodel");
+// const User = require("./models/Usermodel");
 const cors = require("cors");
 const app = express();
+const PORT = process.env.port || 2000
 const bodyParser = require("body-parser");
 const path = require("path");
 app.use(cors());
-app.use(express.static(path.join(__dirname, "./client/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/dist/index.html"));
-});
+
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +24,14 @@ const ordersRoute = require("./routes/ordersRoute");
 app.use("/api/pizzas/", pizzasRoute);
 app.use("/api/users/", UserRoute);
 app.use("/api/orders/", ordersRoute);
+app.use(express.static(path.join(__dirname, "./client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/dist/index.html"));
+  (err)=>{
+    res.status(500).send(err)
+  }
+});
 
-app.listen(2000, () => {
-  console.log("Server running on 2000");
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
 });

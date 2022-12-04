@@ -6,7 +6,7 @@ export const getAllPizzas = () => async (dispatch) => {
 
   try {
     const response = await axios.get(
-      "http://localhost:2000/api/pizzas/getallpizzas"
+      "/api/pizzas/getallpizzas"
     );
     console.log(response);
     dispatch({ type: "GET_PIZZAS_SUCCESS", payload: response.data });
@@ -17,7 +17,7 @@ export const getAllPizzas = () => async (dispatch) => {
 export const deletePizza = (pizzaid) => async(dispatch) => {
   dispatch({ type: "DELETE_PIZZA", payload: pizzaid });
   try {
-    const res = await axios.post("http://localhost:2000/api/pizzas/delete", {
+    const res = await axios.post("/api/pizzas/delete", {
       pizzaid,
     });
     console.log(res);
@@ -33,7 +33,7 @@ export const addPizza = (pizza) => async (dispatch) => {
   dispatch({ type: "ADD_PIZZA_REQUEST" });
   try {
     const response = await axios.post(
-      "http://localhost:2000/api/pizzas/addpizza",
+      "/api/pizzas/addpizza",
       {pizza}
     );
     console.log(response);
@@ -46,7 +46,7 @@ export const filterPizza = (searchkey,category)=>async (dispatch)=>{
   let filteredPizza;
   dispatch({type:'GET_PIZZAS_REQUEST'})
   try{
-   const res = await axios.get("http://localhost:2000/api/pizzas/getallpizzas")
+   const res = await axios.get("/api/pizzas/getallpizzas")
    filteredPizza = res.data.filter((pizza) => pizza.name.toLowerCase().includes(searchkey))
    if(category!== 'all')
    {
