@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+require("dotenv").config()
 var mangourl =
-  "mongodb+srv://hameed381:Y16cs943@cluster0.l6plzgu.mongodb.net/marleysjoint";
+  process.env.MONGO_DB;
 
 mongoose.connect(mangourl, { useUnifiedTopology: true, useNewUrlParser: true });
 
